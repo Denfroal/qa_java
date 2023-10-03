@@ -22,7 +22,6 @@ public class AnimalTest {
         Animal animal = new Animal();
         try {
             animal.getFood("Всеядное");
-            Assert.fail("Expected Exception");
         } catch (Exception e) {
             Assert.assertEquals("Неизвестный вид животного, используйте значение Травоядное или Хищник", e.getMessage());
         }

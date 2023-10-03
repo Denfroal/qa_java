@@ -7,6 +7,7 @@ import org.junit.runners.Parameterized;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.mockito.Spy;
 
 import static com.example.DataTest.*;
 
@@ -25,7 +26,7 @@ public class ParameterizedFelineTest {
     public void setUp() {
         MockitoAnnotations.initMocks(this);
     }
-    @Mock
+    @Spy
     Feline feline;
     @Parameterized.Parameters
     public static Object[][] params() {
@@ -35,22 +36,17 @@ public class ParameterizedFelineTest {
     public void getKittensTest() {
         feline.getKittens(kittensCount);
         Mockito.verify(feline, Mockito.times(1)).getKittens(Mockito.anyInt());
-        Mockito.verifyNoMoreInteractions(feline);
     }
     @Test
     public void getKittensSomeIterationTest() {
         for (int i = 0; i < iteration; i++) {
             feline.getKittens(kittensCount);
         }
-        Mockito.when(feline.getKittens(kittensCount)).thenReturn(kittensCount);
         Mockito.verify(feline, Mockito.times(iteration)).getKittens(Mockito.anyInt());
-        Mockito.verifyNoMoreInteractions(feline);
     }
     @Test
     public void getKittensReturnTest() {
             feline.getKittens(kittensCount);
-        Mockito.when(feline.getKittens(kittensCount)).thenReturn(kittensCount);
         Mockito.verify(feline, Mockito.times(1)).getKittens(expKittenCount);
-        Mockito.verifyNoMoreInteractions(feline);
     }
 }

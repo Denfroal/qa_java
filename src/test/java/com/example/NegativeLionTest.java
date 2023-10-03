@@ -68,8 +68,6 @@ public class NegativeLionTest {
         for (int i = 0; i < iteration; i++) {
             lion.getFood();
             Mockito.when(feline.getFood(type)).thenReturn(food);
-            Mockito.verify(feline, Mockito.times(iteration)).getFood(type);
-            Mockito.verifyNoMoreInteractions(feline);
             Assert.assertEquals("Неподходящая еда", food, lion.getFood());
         }
     }

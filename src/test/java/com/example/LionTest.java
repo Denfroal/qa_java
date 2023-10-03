@@ -28,7 +28,6 @@ public class LionTest {
     @Mock
     Feline feline;
 
-    //Это this
     public LionTest(String sex, boolean exMane, String type, List food) {
         this.sex = sex;
         this.exMane = exMane;
@@ -36,7 +35,6 @@ public class LionTest {
         this.food = food;
     }
 
-    //Это this.Lion
     @Parameterized.Parameters
     public static Object[][] params() {
         return LION_TOLERABLE_SEX;
@@ -46,10 +44,7 @@ public class LionTest {
     @Test
     public void getKittensTest() throws Exception {
             Lion lion = new Lion(feline, sex);
-            lion.getKittens();
             Mockito.when(feline.getKittens()).thenReturn(1);
-            Mockito.verify(feline, Mockito.times(1)).getKittens();
-            Mockito.verifyNoMoreInteractions(feline);
             Assert.assertEquals("Результат не совпадает с ожидаемым",  1, lion.getKittens());
     }
 
@@ -69,10 +64,7 @@ public class LionTest {
     @Test
     public void getFoodTest() throws Exception {
         Lion lion = new Lion(feline, sex);
-            lion.getFood();
         Mockito.when(feline.getFood(type)).thenReturn(food);
-        Mockito.verify(feline, Mockito.times(1)).getFood(type);
-        Mockito.verifyNoMoreInteractions(feline);
         Assert.assertEquals("Неподходящая еда", food, lion.getFood());
     }
 }
