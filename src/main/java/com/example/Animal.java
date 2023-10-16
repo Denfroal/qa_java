@@ -2,6 +2,8 @@ package com.example;
 
 import java.util.List;
 
+import static com.example.DataTest.*;
+
 public class Animal {
 
     public List<String> getFood(String animalKind) throws Exception {
@@ -13,7 +15,6 @@ public class Animal {
             throw new Exception("Неизвестный вид животного, используйте значение Травоядное или Хищник");
         }
     }
-
     public String getFamily() {
         return "Существует несколько семейств: заячьи, беличьи, мышиные, кошачьи, псовые, медвежьи, куньи";
     }
